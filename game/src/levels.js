@@ -5,6 +5,7 @@ export const LEVELS = [
     guards: [
       {name:'Pak Rudi',color:'#8b5549',route:[{x:310,y:142,pause:.7},{x:575,y:142,pause:1.1},{x:575,y:300,pause:.7},{x:310,y:300,pause:1}]},
       {name:'Mbak Sari',color:'#536b79',route:[{x:895,y:351,pause:1},{x:1105,y:351,pause:.8},{x:1105,y:172,pause:1},{x:895,y:172,pause:.7}]},
+      {name:'Ari',color:'#8a6e50',route:[{x:650,y:125,pause:1.8},{x:650,y:350,pause:1.8},{x:715,y:350,pause:1.8},{x:715,y:125,pause:1.8}]},
     ],
     cover: [
       {type:'stall',x:145,y:205,w:126,h:72,tone:0},{type:'crate',x:382,y:188,w:68,h:48},
@@ -23,11 +24,11 @@ export const LEVELS = [
       {name:'Tari',color:'#536b79',route:[{x:690,y:350,pause:.8},{x:690,y:117,pause:.6},{x:870,y:117,pause:.8},{x:870,y:350,pause:.7}]},
       {name:'Banu',color:'#79684d',route:[{x:1050,y:116,pause:.8},{x:1050,y:352,pause:.8},{x:1145,y:352,pause:.6},{x:1145,y:116,pause:.8}]},
     ],
-    cover:[{type:'stall',x:140,y:194,w:112,h:68,tone:2},{type:'crate',x:348,y:182,w:74,h:52},{type:'crate',x:490,y:286,w:70,h:50},{type:'stall',x:520,y:75,w:112,h:72,tone:0},{type:'bush',x:560,y:174,w:66,h:42},{type:'stall',x:744,y:210,w:112,h:72,tone:1},{type:'crate',x:878,y:330,w:78,h:51},{type:'stall',x:972,y:168,w:116,h:74,tone:2},{type:'bush',x:1090,y:245,w:70,h:42},{type:'crate',x:190,y:320,w:70,h:51}],
+    cover:[{type:'stall',x:140,y:194,w:112,h:68,tone:2},{type:'crate',x:348,y:182,w:74,h:52},{type:'crate',x:490,y:286,w:70,h:50},{type:'stall',x:520,y:75,w:112,h:72,tone:0},{type:'bush',x:560,y:174,w:66,h:42},{type:'stall',x:744,y:210,w:112,h:72,tone:1},{type:'crate',x:878,y:330,w:78,h:51},{type:'stall',x:972,y:168,w:116,h:74,tone:2},{type:'bush',x:1090,y:245,w:70,h:42},{type:'bush',x:1090,y:96,w:78,h:44},{type:'crate',x:190,y:320,w:70,h:51}],
     walls:[{x:160,y:88,w:72,h:20},{x:450,y:389,w:100,h:20},{x:929,y:87,w:60,h:20}],
     shadows:[{x:90,y:279,w:177,h:119},{x:312,y:246,w:154,h:135},{x:474,y:159,w:176,h:97},{x:639,y:278,w:145,h:120},{x:836,y:160,w:175,h:119},{x:1017,y:285,w:175,h:115}],hints:[]
   },
-  { name:'Dermaga Lentera',subtitle:'Lantern dock · the hound hears a sprint',playerStart:{x:75,y:420},exit:{x:1204,y:75},
+  { name:'Dermaga Lentera',subtitle:'Lantern dock · the hound hears a sprint',playerStart:{x:75,y:420},exit:{x:1204,y:75},key:{x:1110,y:390},
     fish:[{x:167,y:102},{x:280,y:357},{x:430,y:112},{x:575,y:358},{x:754,y:118},{x:918,y:358},{x:1085,y:155}],
     guards:[
       {name:'Jaka',color:'#8b5549',route:[{x:242,y:110,pause:.5},{x:380,y:110,pause:.5},{x:380,y:230,pause:.6},{x:242,y:230,pause:.5}]},

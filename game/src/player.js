@@ -1,5 +1,6 @@
 import { DASH_COOLDOWN, DASH_SPEED, DASH_TIME, PEBBLES_PER_LEVEL, SNEAK_SPEED, WALK_SPEED } from './config.js';
 import { sound } from './audio.js';
+import { isInShadow } from './lighting.js';
 
 export function makePlayer(start) {
   return {x:start.x,y:start.y,face:0,sneaking:false,running:false,hidden:false,inShadow:false,dash:0,dashCooldown:0,pebbleCooldown:0,stepClock:0,stride:0};
@@ -28,6 +29,7 @@ export function throwPebble(state,target) {
 
 export function updatePlayer(state,controls,dt) {
   const p=state.player;
+  if(state.keyFishRef!==state.fish){state.keyFishRef=state.fish;state.hasKey=!state.level.key;}
   p.dashCooldown=Math.max(0,p.dashCooldown-dt); p.pebbleCooldown=Math.max(0,p.pebbleCooldown-dt);
   if (controls.pebble) throwPebble(state,controls.pebble);
   let dx=controls.dx||0,dy=controls.dy||0,mag=Math.hypot(dx,dy);
@@ -42,8 +44,8 @@ export function updatePlayer(state,controls,dt) {
   const speed=dashing?DASH_SPEED:(p.sneaking?SNEAK_SPEED:WALK_SPEED);
   if (mag>0) move(p,dx*speed*dt,dy*speed*dt,[...state.level.cover,...state.level.walls]);
   p.dash=Math.max(0,p.dash-dt); p.stride+=mag*dt*(p.sneaking?5:10);
-  p.inShadow=state.level.shadows.some((r)=>p.x>r.x&&p.x<r.x+r.w&&p.y>r.y&&p.y<r.y+r.h);
-  p.hidden=state.level.cover.some((r)=>r.type==='bush'&&p.x>r.x&&p.x<r.x+r.w&&p.y>r.y&&p.y<r.y+r.h);
+  p.inShadow=isInShadow(p.x,p.y,state.level);
+  const margin=11;p.hidden=state.level.cover.some((r)=>r.type==='bush'&&p.x>=r.x+margin&&p.x<=r.x+r.w-margin&&p.y>=r.y+margin&&p.y<=r.y+r.h-margin);
   if (mag>0) {
     p.stepClock-=dt;
     if (p.stepClock<=0) {
@@ -54,6 +56,7 @@ export function updatePlayer(state,controls,dt) {
   }
   if (state.noise) { state.noise.life-=dt; if(state.noise.life<=0) state.noise=null; }
   state.comboTime=Math.max(0,state.comboTime-dt);
+  const key=state.level.key;if(key&&!state.hasKey&&Math.hypot(key.x-p.x,key.y-p.y)<24){state.hasKey=true;sound('fish');state.effects.push({x:key.x,y:key.y,life:.75,color:'#ffe08b',kind:'spark'});}
   for (const fish of state.fish) {
     if (fish.taken||Math.hypot(fish.x-p.x,fish.y-p.y)>25) continue;
     fish.taken=true; state.fishCount+=1; state.combo=state.comboTime>0?state.combo+1:1; state.comboTime=2.6;
@@ -61,7 +64,7 @@ export function updatePlayer(state,controls,dt) {
     state.effects.push({x:fish.x,y:fish.y,life:.7,color:'#ffd889',kind:'spark'});
   }
   const needed=Math.ceil(state.fish.length/2);
-  if (state.fishCount>=needed&&Math.hypot(p.x-state.level.exit.x,p.y-state.level.exit.y)<35) state.completeLevel();
+  if (state.fishCount>=needed&&(!state.level.key||state.hasKey)&&Math.hypot(p.x-state.level.exit.x,p.y-state.level.exit.y)<35) state.completeLevel();
 }
 
 export { PEBBLES_PER_LEVEL };

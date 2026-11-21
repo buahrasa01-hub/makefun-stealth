@@ -47,6 +47,8 @@ function investigateNoise(guard, noise) {
 
 export function updateGuards(state, dt) {
   const blockers=[...state.level.cover,...state.level.walls];
+  const p=state.player,margin=11;
+  p.hidden=state.level.cover.some((b)=>b.type==='bush'&&p.x>=b.x+margin&&p.x<=b.x+b.w-margin&&p.y>=b.y+margin&&p.y<=b.y+b.h-margin);
   let danger=0, playerSeen=false;
   for (const guard of state.guards) {
     investigateNoise(guard,state.noise);
