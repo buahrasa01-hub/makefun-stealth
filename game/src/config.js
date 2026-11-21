@@ -1,0 +1,17 @@
+export const WIDTH = 1280;
+export const HEIGHT = 480;
+export const STEP = 1 / 60;
+export const WALK_SPEED = 150;
+export const SNEAK_SPEED = 83;
+export const DASH_SPEED = 430;
+export const DASH_TIME = 0.18;
+export const DASH_COOLDOWN = 1.35;
+export const DETECT_RATE = 0.30;
+export const DETECT_CLOSE_BONUS = 0.38;
+export const DETECT_RUN_BONUS = 0.19;
+export const DETECT_SNEAK_FACTOR = 0.42;
+export const DETECT_SHADOW_FACTOR = 0.68;
+export const PEBBLES_PER_LEVEL = 3;
+export const STARTING_LIVES = 3;
+export const GUARD_SPEED = 45;
+export const CHASE_SPEED = 76;

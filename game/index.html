@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#20243a">
+  <title>Kucing Senja — Pencuri Ikan di Pasar Malam</title>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#171b2b}
+    body{display:grid;place-items:center;font-family:system-ui,sans-serif;color:#f7e9d1}
+    #game{display:block;width:100vw;height:100vh;max-width:100vw;max-height:100vh;object-fit:fill;touch-action:none;cursor:crosshair}
+    #instructions{position:fixed;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  </style>
+</head>
+<body>
+  <canvas id="game" width="1280" height="480" aria-label="Kucing Senja stealth game, top-down night market">Your browser needs canvas for this game.</canvas>
+  <div id="instructions">Move with WASD or arrow keys. Hold Shift to sneak. Click to throw a pebble. Space dashes. Escape pauses.</div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
